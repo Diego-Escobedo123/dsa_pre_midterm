@@ -61,3 +61,54 @@ def build_playlist() -> LinkedList:
         node = Node(song, artist, album)
         playlist.insert_at_end(node)
     return playlist
+ 
+ 
+def display_song(node: Node, index: int, total: int) -> None:
+    print('\n' + '=' * 40)
+    print(f'  Now Playing [{index}/{total}]')
+    print('=' * 40)
+    print(f'  Song   : {node.song["song"]}')
+    print(f'  Artist : {node.song["artist"]}')
+    print(f'  Album  : {node.song["album"]}')
+    print('=' * 40)
+ 
+ 
+def run_playlist() -> None:
+    playlist = build_playlist()
+    total = len(playlist)
+    current = playlist.start
+    index = 1
+ 
+    print('\n  Welcome to your playlist!')
+    print('  Controls: [n] Next  |  [p] Previous  |  [q] Quit')
+ 
+    display_song(current, index, total)
+ 
+    while True:
+        command = input('\n  > ').strip().lower()
+ 
+        if command == 'n':
+            if current.next is not None:
+                current = current.next
+                index += 1
+                display_song(current, index, total)
+            else:
+                print('\n  You have reached the end of the playlist.')
+ 
+        elif command == 'p':
+            if current.prev is not None:
+                current = current.prev
+                index -= 1
+                display_song(current, index, total)
+            else:
+                print('\n  You are at the beginning of the playlist.')
+ 
+        elif command == 'q':
+            print('\n  Goodbye!\n')
+            break
+ 
+        else:
+            print('\n  Invalid command. Use [n] Next  |  [p] Previous  |  [q] Quit')
+ 
+ 
+run_playlist()
