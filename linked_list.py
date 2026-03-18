@@ -1,6 +1,6 @@
 from typing import Any
  
- # Estilo consistente con la base del código - Mejoras a clases, paso 3
+ # Estilo consistente con la base del código - Mejoras a clases
  
 class Node:
     def __init__(self, song: str, artist: str, album: str):
